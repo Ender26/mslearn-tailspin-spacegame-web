@@ -33,9 +33,15 @@ namespace TailSpin.SpaceGame.Web
         /// The task result contains the retrieved item.
         /// </returns>
         /// <param name="id">The identifier of the item to retrieve.</param>
-        public Task<T> GetItemAsync(string id)
+        public Task<IEnumerable<T>> GetItemAsync(    Func<T, bool> queryPredicate,Func<T, int> orderDescendingPredicate, int page = 1, int pageSize = 10)
         {
-            return Task<T>.FromResult(_items.Single(item => item.Id == id));
+            var result = _items
+        .Where(queryPredicate) // filter
+        .OrderByDescending(orderDescendingPredicate) // sort
+        .Skip(page * pageSize) // find page
+        .Take(pageSize); // take items
+
+        return Task<IEnumerable<T>>.FromResult(result);
         }
 
         /// <summary>
@@ -80,6 +86,11 @@ namespace TailSpin.SpaceGame.Web
                 .Count(); // count
 
             return Task<int>.FromResult(count);
+        }
+
+        public Task<T> GetItemAsync(string id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

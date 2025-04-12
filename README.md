@@ -1,3 +1,4 @@
+[![Build Status](https://dev.azure.com/todorvtodorov/New_TU-Sofia_Practicum/_apis/build/status%2FEnder26.mslearn-tailspin-spacegame-web?branchName=main)](https://dev.azure.com/todorvtodorov/New_TU-Sofia_Practicum/_build/latest?definitionId=10&branchName=main)
 
 # Contributing
 
